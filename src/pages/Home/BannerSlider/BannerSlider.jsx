@@ -1,8 +1,14 @@
 import React from 'react';
+import SectionTitle from '../../Shared/sectionTitle/SectionTitle';
 
 const BannerSlider = () => {
     return (
         <div className="carousel w-full">
+
+
+            {/* TODO: some banner slider work do not finished.  */}
+
+            <SectionTitle heading={'slider'} subHeading={'ths is'}></SectionTitle>
             <div id="slide1" className="carousel-item relative w-full lg:h-[600px] bg-black bg-opacity-40">
                 <img src="https://i.ibb.co/wNkGb93/pngegg-1.png" className="w-full" />
                 <div className="absolute left-10 top-1/4 text-white">

@@ -21,7 +21,10 @@ const Navbar = () => {
                         {navItem}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl text-green-500">DanceEcademy</a>
+                <div className="ms-10 normal-case text-xl text-green-500 bg-[url('https://i.ibb.co/q7dgC9w/pngegg-8.png')]">
+                    <p className='mb-0'>StepUp</p>
+                    <span className='text-xs'>dance club</span>
+                </div>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 text-green-500 ">
