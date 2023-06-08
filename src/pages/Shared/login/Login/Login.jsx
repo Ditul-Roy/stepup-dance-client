@@ -1,11 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../../../hook/UseAuth';
 import Swal from 'sweetalert2';
 import SocialLogin from '../socialLogin/SocialLogin';
 
 const Login = () => {
     const {signInUserWithEmail} = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
 
     const handleUserLogin = (e) => {
         e.preventDefault();
@@ -16,15 +19,17 @@ const Login = () => {
         .then(res =>{
             const loggedUser = res.user;
             console.log(loggedUser);
-            Swal.fire(
-                'Good job!',
-                'User logged successfully',
-                'success'
-              )
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'User successfully login',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              navigate(from)
               form.reset();
         })
-        .catch(err => {
-            
+        .catch(err => { 
             console.log(err);
         })
     }

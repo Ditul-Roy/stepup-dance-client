@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm, } from 'react-hook-form';
 import useAuth from '../../../../hook/UseAuth';
 import Swal from 'sweetalert2';
@@ -7,6 +7,7 @@ import SocialLogin from '../socialLogin/SocialLogin';
 
 const Register = () => {
     const { signUpUserWithEmail, updateUserProfile } = useAuth();
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -19,14 +20,16 @@ const Register = () => {
         console.log(form);
         signUpUserWithEmail(form.email, form.password)
             .then(() => {
-                Swal.fire(
-                    'Good job!',
-                    'User created successfully',
-                    'success'
-                )
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'User successfully created',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
                 updateUserProfile(form.name, form.photoURL)
                     .then(() => {
-                        alert('updated')
+                        navigate('/')
                     })
                     .catch(err=>{
                         console.log(err);

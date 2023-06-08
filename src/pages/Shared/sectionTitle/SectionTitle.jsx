@@ -1,6 +1,8 @@
 import React from 'react';
 
 const SectionTitle = ({heading, subHeading}) => {
+
+    // TODO: section title work not finished
     return (
         <div>
             <p className='text-3xl upercase text-green-600 '>{heading}</p>
