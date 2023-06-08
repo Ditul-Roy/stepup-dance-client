@@ -14,8 +14,8 @@ const Navbar = () => {
         <li><Link to='/'>instractors</Link></li>
         <li><Link to='/'>classes</Link></li>
         {user ? <>
-        <li><Link to='/'>dashboard</Link></li>
-        <li><Link to='/'>profile</Link></li>
+        <li><Link to='/dashboard'>dashboard</Link></li>
+        <li><Link to='/profile'>profile</Link></li>
         <li><button onClick={handleLogOut}>logOut</button></li>
         </> :  <li><Link to='/login'>log in</Link></li>} 
     </>
