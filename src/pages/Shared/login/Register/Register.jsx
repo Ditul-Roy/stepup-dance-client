@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useForm,} from 'react-hook-form';
 import useAuth from '../../../../hook/UseAuth';
 import Swal from 'sweetalert2';
+import SocialLogin from '../socialLogin/SocialLogin';
 
 const Register = () => {
     const {signUpUserWithEmail} = useAuth();
@@ -88,7 +89,7 @@ const Register = () => {
                         </div>
                     </form>
                     <p>Already have an acoount ! please <Link className='underline' to='/login'>login</Link></p>
-                    
+                    <SocialLogin></SocialLogin>
                 </div>
             </div>
         </div>
