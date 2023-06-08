@@ -1,16 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { useForm,} from 'react-hook-form';
 
 const Register = () => {
     const {
         register,
         handleSubmit,
+        reset,
+        watch,
         formState: { errors },
       } = useForm();
 
       const onsubmit = form => {
         console.log(form);
+        reset()
       }
 
 
@@ -38,15 +41,24 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" placeholder="password" {...register('password', { required: true })} className="input input-bordered" />
-                            {errors.password && <p>password is required.</p>}
+                            <input type="password" placeholder="password" {...register('password', { 
+                                required: true,
+                                minLength: 6,
+                                pattern: /(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])/
+                                })} className="input input-bordered" />
+                            {errors.password?.type==='required' && <p>password is required.</p>}
+                            {errors.password?.type==='minLength' && <p>password is at least 6 charrecter.</p>}
+                            {errors.password?.type==='pattern' && <p>password is an spcial charrecter, password is an lowerCase, password is an UppserCase.</p>}
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Confirm Password</span>
                             </label>
-                            <input type="password" placeholder="confirm password" {...register('confirm', { required: true })} className="input input-bordered" />
+                            <input type="password" placeholder="confirm password" {...register('confirm', { required: true,
+                             validate: value => value === watch('password') || 'The passwords do not match'
+                            })} className="input input-bordered" />
                             {errors.confirm && <p>confirm password is required.</p>}
+                            {errors.confirm?.type==='validate' && <p>password is required.</p>}
                         </div>
                         <div className="form-control">
                             <label className="label">
