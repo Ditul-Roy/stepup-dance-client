@@ -6,11 +6,11 @@ const Footer = () => {
         <footer className="footer footer-center p-10 bg-neutral text-neutral-content mt-10">
             <div className='footer text-gray-200'>
                 <div>
-                    <img className='h-24 w-24' src="https://i.ibb.co/q7dgC9w/pngegg-8.png" alt="" />
-                    <p className="font-bold text-xl">
+                    <img className='h-24 w-24 lg:ms-10' src="https://i.ibb.co/q7dgC9w/pngegg-8.png" alt="" />
+                    <p className="font-bold text-xl text-center">
                         StepUp Dance club
                     </p>
-                    <p>Providing reliable tech since 1992</p>
+                    <p>jamal mor Thakurgaon, Bangladesh</p>
                 </div>
                 <div>
                     <span className="footer-title">Services</span>

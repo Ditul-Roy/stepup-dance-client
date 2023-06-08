@@ -9,6 +9,7 @@ const Navbar = () => {
         <li><Link to='/'>classes</Link></li>
         <li><Link to='/'>dashboard</Link></li>
         <li><Link to='/'>profile</Link></li>
+        <li><Link to='/login'>log in</Link></li>
     </>
     return (
         <div className="navbar bg-black bg-opacity-40 text-white uppercase">
