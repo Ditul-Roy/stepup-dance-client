@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm,} from 'react-hook-form';
+import useAuth from '../../../../hook/UseAuth';
+import Swal from 'sweetalert2';
 
 const Register = () => {
+    const {signUpUserWithEmail} = useAuth();
     const {
         register,
         handleSubmit,
@@ -13,7 +16,20 @@ const Register = () => {
 
       const onsubmit = form => {
         console.log(form);
-        reset()
+        signUpUserWithEmail(form.email, form.password)
+        .then(res =>{
+            const createUser = res.user;
+            Swal.fire(
+                'Good job!',
+                'User created successfully',
+                'success'
+              )
+            reset();
+        })
+        .catch(err => {
+            
+            console.log(err);
+        })
       }
 
 
