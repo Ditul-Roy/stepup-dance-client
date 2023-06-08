@@ -1,13 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 
     const navItem = <>
-        <li><a>Item 1</a></li>
-        <li><a>Item 3</a></li>
+        <li><Link to='/'>home</Link></li>
+        <li><Link to='/'>instractors</Link></li>
+        <li><Link to='/'>classes</Link></li>
+        <li><Link to='/'>dashboard</Link></li>
+        <li><Link to='/'>profile</Link></li>
     </>
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-black bg-opacity-40 text-white uppercase">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -17,10 +21,10 @@ const Navbar = () => {
                         {navItem}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">DanceEcademy</a>
+                <a className="btn btn-ghost normal-case text-xl text-green-500">DanceEcademy</a>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal px-1 text-green-500 ">
                     {navItem}
                 </ul>
             </div>
