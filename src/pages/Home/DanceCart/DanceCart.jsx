@@ -1,7 +1,7 @@
 import React from 'react';
 
 const DanceCart = ({ dance }) => {
-    console.log(dance);
+    // console.log(dance);
     const {available_seats, instructor_name, image, name, total_students, price} = dance;
     return (
         <div className="card w-80 mb-10 glass">

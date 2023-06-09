@@ -4,7 +4,7 @@ import SectionTitle from '../../Shared/sectionTitle/SectionTitle';
 
 const Instructors = () => {
     const [instructors] = useInstructors();
-    console.log(instructors);
+    // console.log(instructors);
     return (
         <div>
             <SectionTitle heading='popular instructors' subHeading='There are our instructors, they are provide our dance service'></SectionTitle>
@@ -46,7 +46,7 @@ const Instructors = () => {
                                         {instructor.email}
                                     </td>
                                     <td>{instructor.number_of_classes}</td>
-                                    <td>{instructor.name_of_classes.map(clas => <p>{clas}</p>)}</td>
+                                    <td>{instructor.name_of_classes.map((clas, index) => <p key={index}>{clas}</p>)}</td>
                                     <th>
                                         <button className="btn btn-ghost btn-xs">details</button>
                                     </th>
