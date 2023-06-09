@@ -26,7 +26,7 @@ const Instructors = () => {
                         </thead>
                         <tbody>
                             {
-                                instructors.map((instructor, index) => <tr key={instructor._id}>
+                                instructors.slice(0,6).map((instructor, index) => <tr key={instructor._id}>
                                     <td>
                                         {index + 1}
                                     </td>

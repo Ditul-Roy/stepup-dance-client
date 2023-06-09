@@ -5,6 +5,7 @@ import Register from "../pages/Shared/login/Register/Register";
 import MainLayout from "../Layout/MainLayout";
 import Profile from "../pages/Profile/Profile";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import AllInstructors from "../pages/AllInstructors/AllInstructor/AllInstructors";
 
 const router = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
         {
           path: 'dashboard',
           element: <Dashboard></Dashboard>
+        },
+        {
+          path: '/instructors',
+          element: <AllInstructors></AllInstructors>
         }
       ]
     },
