@@ -8,6 +8,8 @@ import AllInstructors from "../pages/AllInstructors/AllInstructor/AllInstructors
 import AllClass from "../pages/AllClasses/AllClass/AllClass";
 import DashboardLayout from "../Layout/DashboardLayout";
 import MyClass from "../pages/Dashboard/Student/MyClass/MyClass";
+import MyEnrolled from "../pages/Dashboard/Student/MyEnrolled/MyEnrolled";
+import InstrClasses from "../pages/Dashboard/Instructor/InstrClasses/InstrClasses";
 
 const router = createBrowserRouter([
     {
@@ -47,6 +49,14 @@ const router = createBrowserRouter([
         {
           path: 'myClass',
           element: <MyClass></MyClass>
+        },
+        {
+          path: 'enrolled',
+          element: <MyEnrolled></MyEnrolled>
+        },
+        {
+          path: 'instructorClasses',
+          element: <InstrClasses></InstrClasses>
         }
       ]
     }

@@ -4,7 +4,7 @@ import useAuth from '../../../hook/UseAuth';
 
 const Navbar = () => {
     const {user, signOutUser} = useAuth();
-
+    const isInstructor = true;
     const handleLogOut = () => {
         signOutUser();
     }
@@ -14,7 +14,7 @@ const Navbar = () => {
         <li><Link to='/instructors'>instractors</Link></li>
         <li><Link to='/allClasses'>classes</Link></li>
         {user ? <>
-        <li><Link to='/dashboard/myClass'>dashboard</Link></li>
+        <li><Link to={isInstructor ? "/dashboard/instructorClasses" : "/dashboard/myClass"}>dashboard</Link></li>
         <li><Link to='/profile'>profile</Link></li>
         <li><button onClick={handleLogOut}>logOut</button></li>
         </> :  <li><Link to='/login'>log in</Link></li>} 

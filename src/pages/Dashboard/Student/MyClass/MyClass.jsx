@@ -1,9 +1,44 @@
 import React from 'react';
 import useSelects from '../../../../hook/useSelects';
 import { FaTrash, FaWallet } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const MyClass = () => {
-    const [selects] = useSelects();
+    const [selects, refetch] = useSelects();
+    const handleDelete = select => {
+        
+// TODO: delete button work is not finished
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              fetch(`http://localhost:5000/selects/${select._id}`,{
+                method: 'DELETE'
+              })
+              .then(res => res.json())
+              .then(data =>{
+                console.log(data);
+                if(data.deletedCount > 0){
+                    refetch();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                }
+              })
+            }
+          })
+    }
     return (
         <div>
             <h3 className='text-3xl text-bold text-gray-600 text-center'>My selected class is : {selects.length}</h3>
@@ -48,7 +83,7 @@ const MyClass = () => {
                                 </td>
                                 <td><button className='btn btn-outline border-0 btn-xs btn-warning'><FaWallet></FaWallet></button></td>
                                 <th>
-                                    <button className="btn btn-outline border-0 btn-secondary btn-xs"><FaTrash></FaTrash></button>
+                                    <button onClick={()=>handleDelete(select)} className="btn btn-outline border-0 btn-secondary btn-xs"><FaTrash></FaTrash></button>
                                 </th>
                             </tr>)
                         }
