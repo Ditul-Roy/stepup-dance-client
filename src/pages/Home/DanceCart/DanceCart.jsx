@@ -46,7 +46,7 @@ const DanceCart = ({ dance, refetch }) => {
             .then(data => {
                 console.log(data);
                 if(data.insertedId){
-                    refetch()
+                    // refetch()
                     if(available_seats > 0){
                         setSeat(preseat => preseat - 1)
                     } 
@@ -66,8 +66,8 @@ const DanceCart = ({ dance, refetch }) => {
                     <p><span className='text-bold'>Total students</span>: {total_students}</p>
                 </div>
                 <p>Price: ${price}</p>
-                <div className="card-actions justify-end">
-                    <button onClick={handleSelect} disabled={seat === 0} className="btn btn-primary">select</button>
+                <div className="card-actions justify-center">
+                    <button onClick={handleSelect} disabled={seat === 0} className="btn btn-primary">enroll now</button>
                 </div>
             </div>
         </div>
