@@ -1,11 +1,13 @@
 import React from 'react';
 import useSelects from '../../../../hook/useSelects';
+import { FaTrash, FaWallet } from 'react-icons/fa';
 
 const MyClass = () => {
     const [selects] = useSelects();
     return (
         <div>
-            <h3 className='text-3xl text-bold text-gray-600'>My selected class is : {selects.length}</h3>
+            <h3 className='text-3xl text-bold text-gray-600 text-center'>My selected class is : {selects.length}</h3>
+            <div className='divider'></div>
             <div className="overflow-x-auto">
                 <table className="table">
                     <thead>
@@ -15,8 +17,8 @@ const MyClass = () => {
                             </th>
                             <th>Dance</th>
                             <th>Instructor</th>
-                            <th>Total Student</th>
                             <th>Price</th>
+                            <th>Pay</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -44,9 +46,9 @@ const MyClass = () => {
                                 <td>
                                    {select.total_students}
                                 </td>
-                                <td>${select.price}</td>
+                                <td><button className='btn btn-outline border-0 btn-xs btn-warning'><FaWallet></FaWallet></button></td>
                                 <th>
-                                    <button className="btn btn-ghost btn-xs">details</button>
+                                    <button className="btn btn-outline border-0 btn-secondary btn-xs"><FaTrash></FaTrash></button>
                                 </th>
                             </tr>)
                         }
