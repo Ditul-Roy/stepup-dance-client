@@ -18,29 +18,29 @@ const Register = () => {
 
     const onsubmit = form => {
         console.log(form);
-        signUpUserWithEmail(form.email, form.password)
-            .then(() => {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'User successfully created',
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
-                updateUserProfile(form.name, form.photoURL)
-                    .then(() => {
-                        navigate('/')
-                    })
-                    .catch(err=>{
-                        console.log(err);
-                    })
-                reset();    
-            })
+        // signUpUserWithEmail(form.email, form.password)
+        //     .then(() => {
+        //         Swal.fire({
+        //             position: 'center',
+        //             icon: 'success',
+        //             title: 'User successfully created',
+        //             showConfirmButton: false,
+        //             timer: 1500
+        //           })
+        //         updateUserProfile(form.name, form.photoURL)
+        //             .then(() => {
+        //                 navigate('/')
+        //             })
+        //             .catch(err=>{
+        //                 console.log(err);
+        //             })
+        //         reset();    
+        //     })
 
-            .catch(err => {
+        //     .catch(err => {
 
-                console.log(err);
-            })
+        //         console.log(err);
+        //     })
     }
 
 
