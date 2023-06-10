@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAuth from '../../../hook/UseAuth';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const DanceCart = ({ dance }) => {
-    const {user} = useAuth();
+const DanceCart = ({ dance, refetch }) => {
+    const {_id, available_seats, instructor_name, image, name, total_students, price } = dance;
+
+    const [seat, setSeat] = useState(available_seats);
+    // const total = cart.reduce((sum, item) => item.price + sum, 0);
+    const { user } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
 
     const handleSelect = () => {
-        if(!user){
+        if (!user) {
             Swal.fire({
                 title: 'please login first?',
                 text: "your are not logged in please login first and then select the class",
@@ -18,29 +22,32 @@ const DanceCart = ({ dance }) => {
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'log in now'
-              }).then((result) => {
+            }).then((result) => {
                 if (result.isConfirmed) {
-                    navigate('/login', {state: {from: location}, replace: {replace: true}})
-                }    
-              })
+                    navigate('/login', { state: { from: location }, replace: { replace: true } })
+                }
+            })
+        }
+        else {
+            if(available_seats > 0){
+                setSeat(preseat => preseat - 1)
+            }  
         }
     }
 
-    // console.log(dance);
-    const {available_seats, instructor_name, image, name, total_students, price} = dance;
     return (
-        <div className="card w-80 mb-10 glass">
+        <div className={seat === 0 ? 'card w-80 mb-10 glass bg-red-400' : 'card w-80 mb-10 glass bg-slate-200'}>
             <figure><img className='h-48' src={image} alt="car!" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
                 <p className='text-xl'>Instructor: {instructor_name}</p>
                 <div className='flex justify-around'>
-                    <p><span className='text-bold'>Avilable seets</span>: {available_seats}</p>
+                    <p><span className='text-bold'>Avilable seets</span>: {seat}</p>
                     <p><span className='text-bold'>Total students</span>: {total_students}</p>
                 </div>
                 <p>Price: ${price}</p>
                 <div className="card-actions justify-end">
-                    <button onClick={handleSelect} className="btn btn-primary">select</button>
+                    <button onClick={handleSelect} disabled={seat === 0} className="btn btn-primary">select</button>
                 </div>
             </div>
         </div>
@@ -48,3 +55,37 @@ const DanceCart = ({ dance }) => {
 };
 
 export default DanceCart;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ // fetch(`http://localhost:5000/dances/${id}`, {
+            //     method: "PATCH"
+            // })
+            //     .then(res => res.json())
+            //     .then(data => {
+            //         if (data.modifiedCount) {
+            //             // refetch();
+            //             Swal.fire({
+            //                 position: 'top-end',
+            //                 icon: 'success',
+            //                 title: 'your class hass been selected',
+            //                 showConfirmButton: false,
+            //                 timer: 1500
+            //               })
+            //         }
+            //     })
