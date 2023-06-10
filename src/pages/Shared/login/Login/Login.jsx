@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../../../hook/UseAuth';
 import Swal from 'sweetalert2';
 import SocialLogin from '../socialLogin/SocialLogin';
@@ -55,7 +55,7 @@ const Login = () => {
                             <input className='btn btn-primary' type="submit" value="login now" />
                         </div>
                     </form>
-                    <p>new to ! please <Link className='underline' to='/register'>register</Link></p>
+                    <p>new to ! please <NavLink className='underline' to='/register'>register</NavLink></p>
                     <SocialLogin></SocialLogin>
                 </div>
             </div>

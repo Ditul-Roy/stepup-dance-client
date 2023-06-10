@@ -1,6 +1,6 @@
 import React from 'react';
 import Footer from '../pages/Shared/Footer/Footer';
-import { Link, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import { FaHome, FaBookmark, FaWallet, FaUserAlt, FaBook } from 'react-icons/fa';
 
 const DashboardLayout = () => {
@@ -20,19 +20,19 @@ const DashboardLayout = () => {
 
                         {
                             isInstructor ? <>
-                                <li><Link to='/dashboard/enrolled'><FaBookmark></FaBookmark> Add class</Link></li>
-                                <li><Link to='/instructorClasses'><FaBook></FaBook> My class</Link></li>
+                                <li><NavLink to='/dashboard/addClass'><FaBookmark></FaBookmark> Add class</NavLink></li>
+                                <li><NavLink to='/dashboard/instructorClasses'><FaBook></FaBook> My class</NavLink></li>
                             </> : <>
-                                <li><Link to='/dashboard/myClass'><FaHome></FaHome> My class</Link></li>
-                                <li><Link to='/dashboard/enrolled'><FaBookmark></FaBookmark> My enrolled class</Link></li>
-                                <li><Link to='/dashboard/pay'><FaWallet></FaWallet> My Payment</Link></li>
+                                <li><NavLink to='/dashboard/myClass'><FaHome></FaHome> My class</NavLink></li>
+                                <li><NavLink to='/dashboard/enrolled'><FaBookmark></FaBookmark> My enrolled class</NavLink></li>
+                                <li><NavLink to='/dashboard/pay'><FaWallet></FaWallet> My Payment</NavLink></li>
                             </>
 
                         }
                         <div className='divider'></div>
-                        <li><Link to='/'><FaHome></FaHome> home</Link></li>
-                        <li><Link to='/allClasses'><FaBook></FaBook> classes</Link></li>
-                        <li><Link to='/profile'><FaUserAlt></FaUserAlt> profile</Link></li>
+                        <li><NavLink to='/'><FaHome></FaHome> home</NavLink></li>
+                        <li><NavLink to='/allClasses'><FaBook></FaBook> classes</NavLink></li>
+                        <li><NavLink to='/profile'><FaUserAlt></FaUserAlt> profile</NavLink></li>
                     </ul>
 
                 </div>

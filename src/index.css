@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+ul li a:active{
+    color: black;
+}
+ul li a{
+    background: transparent;
+}

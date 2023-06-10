@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useForm, } from 'react-hook-form';
 import useAuth from '../../../../hook/UseAuth';
 import Swal from 'sweetalert2';
@@ -100,7 +100,7 @@ const Register = () => {
                             <input className='btn btn-primary' type="submit" value="register now" />
                         </div>
                     </form>
-                    <p>Already have an acoount ! please <Link className='underline' to='/login'>login</Link></p>
+                    <p>Already have an acoount ! please <NavLink className='underline' to='/login'>login</NavLink></p>
                     <SocialLogin></SocialLogin>
                 </div>
             </div>

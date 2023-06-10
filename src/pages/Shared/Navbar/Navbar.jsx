@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import useAuth from '../../../hook/UseAuth';
 
 const Navbar = () => {
@@ -10,14 +10,14 @@ const Navbar = () => {
     }
 
     const navItem = <>
-        <li><Link to='/'>home</Link></li>
-        <li><Link to='/instructors'>instractors</Link></li>
-        <li><Link to='/allClasses'>classes</Link></li>
+        <li><NavLink to='/'>home</NavLink></li>
+        <li><NavLink to='/instructors'>instractors</NavLink></li>
+        <li><NavLink to='/allClasses'>classes</NavLink></li>
         {user ? <>
-        <li><Link to={isInstructor ? "/dashboard/instructorClasses" : "/dashboard/myClass"}>dashboard</Link></li>
-        <li><Link to='/profile'>profile</Link></li>
+        <li><NavLink to={isInstructor ? "/dashboard/instructorClasses" : "/dashboard/myClass"}>dashboard</NavLink></li>
+        <li><NavLink to='/profile'>profile</NavLink></li>
         <li><button onClick={handleLogOut}>logOut</button></li>
-        </> :  <li><Link to='/login'>log in</Link></li>} 
+        </> :  <li><NavLink to='/login'>log in</NavLink></li>} 
     </>
     return (
         <div className="navbar bg-black bg-opacity-40 text-white uppercase">
