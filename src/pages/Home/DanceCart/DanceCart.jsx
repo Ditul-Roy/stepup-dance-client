@@ -6,8 +6,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const DanceCart = ({ dance, refetch }) => {
     const {_id, available_seats, instructor_name, image, name, total_students, price } = dance;
 
+
+    // TODO:Update available_seats count number is not finished
+
+
     const [seat, setSeat] = useState(available_seats);
     // const total = cart.reduce((sum, item) => item.price + sum, 0);
+
     const { user } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
@@ -29,9 +34,24 @@ const DanceCart = ({ dance, refetch }) => {
             })
         }
         else {
-            if(available_seats > 0){
-                setSeat(preseat => preseat - 1)
-            }  
+            const selectedClass = {_id, available_seats, instructor_name, image, name, total_students, price, email: user?.email};
+            fetch('http://localhost:5000/selects',{
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(selectedClass)
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if(data.insertedId){
+                    refetch()
+                    if(available_seats > 0){
+                        setSeat(preseat => preseat - 1)
+                    } 
+                }
+            }) 
         }
     }
 

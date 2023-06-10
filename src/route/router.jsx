@@ -4,9 +4,10 @@ import Login from "../pages/Shared/login/Login/Login";
 import Register from "../pages/Shared/login/Register/Register";
 import MainLayout from "../Layout/MainLayout";
 import Profile from "../pages/Profile/Profile";
-import Dashboard from "../pages/Dashboard/Dashboard";
 import AllInstructors from "../pages/AllInstructors/AllInstructor/AllInstructors";
 import AllClass from "../pages/AllClasses/AllClass/AllClass";
+import DashboardLayout from "../Layout/DashboardLayout";
+import MyClass from "../pages/Dashboard/Student/MyClass/MyClass";
 
 const router = createBrowserRouter([
     {
@@ -30,10 +31,6 @@ const router = createBrowserRouter([
           element: <Profile></Profile>
         },
         {
-          path: 'dashboard',
-          element: <Dashboard></Dashboard>
-        },
-        {
           path: '/instructors',
           element: <AllInstructors></AllInstructors>
         },
@@ -43,6 +40,16 @@ const router = createBrowserRouter([
         }
       ]
     },
+    {
+      path: '/dashboard',
+      element: <DashboardLayout></DashboardLayout>,
+      children: [
+        {
+          path: '/dashboard/myClass',
+          element: <MyClass></MyClass>
+        }
+      ]
+    }
   ]);
 
   export default router;
