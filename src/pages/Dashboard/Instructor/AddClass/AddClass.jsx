@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAuth from '../../../../hook/UseAuth';
 import { useForm } from 'react-hook-form';
 
@@ -6,7 +6,7 @@ const AddClass = () => {
 
     const { user } = useAuth();
     // console.log(user);
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, reset, formState: { errors }, handleSubmit } = useForm();
 
     const onSubmit = data => {
         const savedClass = {name: data.name, image: data.image, instructor_name: data.instructor_name, email: data.email, available_seats: parseInt(data.available_seats), price: parseInt(data.price) }
@@ -21,6 +21,9 @@ const AddClass = () => {
          .then(res => res.json())
          .then(data =>{
             console.log(data);
+            if(data.insertedId){
+                reset();
+            }
          })
     }
     return (
@@ -70,7 +73,7 @@ const AddClass = () => {
                         {errors.price && <p>price is required.</p>}
                     </div>
                     <div className="form-control mt-6">
-                        <input className="btn btn-primary" type="submit" value="add Class" />
+                        <input className="btn btn-primary" type="submit" value="add class" />
                     </div>
                 </form>
             </div>

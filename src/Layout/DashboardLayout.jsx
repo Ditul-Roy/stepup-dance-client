@@ -4,7 +4,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { FaHome, FaBookmark, FaWallet, FaUserAlt, FaBook } from 'react-icons/fa';
 
 const DashboardLayout = () => {
-    const isInstructor = true;
+    const isInstructor = false;
     return (
         <div className='pt-10'>
             <div className="drawer lg:drawer-open">

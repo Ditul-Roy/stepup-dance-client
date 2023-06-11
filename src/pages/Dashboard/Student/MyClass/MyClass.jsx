@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useSelects from '../../../../hook/useSelects';
 import { FaTrash, FaWallet } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import Payment from '../Payment/Payment';
+import { useNavigate } from 'react-router-dom';
 
 const MyClass = () => {
     const [selects, refetch] = useSelects();
+    const [pay, setPay] = useState({});
+    const [hide, setHide] = useState(true);
+
+    const handlePay = id => {
+        const payment = selects.find(s => s._id === id)
+        setPay(payment);
+        setHide(false);
+
+    }
+
     const handleDelete = select => {
         
 // TODO: delete button work is not finished
@@ -79,9 +91,9 @@ const MyClass = () => {
                                     {select.instructor_name}
                                 </td>
                                 <td>
-                                   {select.total_students}
+                                   ${select.price}
                                 </td>
-                                <td><button className='btn btn-outline border-0 btn-xs btn-warning'><FaWallet></FaWallet></button></td>
+                                <td><button onClick={()=>handlePay(select._id)} className='btn btn-outline border-0 btn-xs btn-warning'><FaWallet></FaWallet></button></td>
                                 <th>
                                     <button onClick={()=>handleDelete(select)} className="btn btn-outline border-0 btn-secondary btn-xs"><FaTrash></FaTrash></button>
                                 </th>
@@ -90,6 +102,7 @@ const MyClass = () => {
                     </tbody>
                 </table>
             </div>
+            <div className={hide === true ? 'hidden' : 'block'}><Payment pay={pay}></Payment></div>
         </div>
     );
 };
