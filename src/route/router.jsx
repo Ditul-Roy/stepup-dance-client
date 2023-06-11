@@ -12,6 +12,7 @@ import MyEnrolled from "../pages/Dashboard/Student/MyEnrolled/MyEnrolled";
 import InstrClasses from "../pages/Dashboard/Instructor/InstrClasses/InstrClasses";
 import AddClass from "../pages/Dashboard/Instructor/AddClass/AddClass";
 import Payment from "../pages/Dashboard/Student/Payment/Payment";
+import ProvateRoute from "./ProvateRoute";
 
 const router = createBrowserRouter([
     {
@@ -58,7 +59,7 @@ const router = createBrowserRouter([
         },
         {
           path: 'pay',
-          element: <Payment></Payment>
+          element: <ProvateRoute><Payment></Payment></ProvateRoute>
         },
         {
           path: 'instructorClasses',

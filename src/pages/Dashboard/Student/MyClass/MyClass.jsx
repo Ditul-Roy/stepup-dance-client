@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useSelects from '../../../../hook/useSelects';
 import { FaTrash, FaWallet } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import Payment from '../Payment/Payment';
-import { useNavigate } from 'react-router-dom';
 
 const MyClass = () => {
     const [selects, refetch] = useSelects();
@@ -51,6 +50,7 @@ const MyClass = () => {
             }
           })
     }
+
     return (
         <div>
             <h3 className='text-3xl text-bold text-gray-600 text-center'>My selected class is : {selects.length}</h3>

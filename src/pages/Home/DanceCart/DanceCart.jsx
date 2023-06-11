@@ -17,7 +17,7 @@ const DanceCart = ({ dance, refetch }) => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const handleSelect = () => {
+    const handleSelect = (id) => {
         if (!user) {
             Swal.fire({
                 title: 'please login first?',
@@ -34,7 +34,7 @@ const DanceCart = ({ dance, refetch }) => {
             })
         }
         else {
-            const selectedClass = {_id, available_seats, instructor_name, image, name, total_students, price, email: user?.email};
+            const selectedClass = { available_seats, instructor_name, image, name, total_students, price, email: user?.email};
             fetch('http://localhost:5000/selects',{
                 method: 'POST',
                 headers: {
@@ -47,9 +47,20 @@ const DanceCart = ({ dance, refetch }) => {
                 console.log(data);
                 if(data.insertedId){
                     // refetch()
-                    if(available_seats > 0){
-                        setSeat(preseat => preseat - 1)
-                    } 
+                    // 
+                    fetch(`http://localhost:5000/classes/${id}/book`,{
+                        method: 'PUT'
+                    })
+                    .then(res => res.json())
+                    .then(data =>{
+                        console.log(data);
+                        if(data.modifiedCount > 0){
+                            if(available_seats > 0){
+                                setSeat(prevSeat => prevSeat - 1)
+                                refetch()
+                            }
+                        }
+                    })
                 }
             }) 
         }
@@ -67,7 +78,7 @@ const DanceCart = ({ dance, refetch }) => {
                 </div>
                 <p>Price: ${price}</p>
                 <div className="card-actions justify-center">
-                    <button onClick={handleSelect} disabled={seat === 0} className="btn btn-primary">enroll now</button>
+                    <button onClick={()=>handleSelect(_id)} disabled={seat === 0} className="btn btn-primary">enroll now</button>
                 </div>
             </div>
         </div>

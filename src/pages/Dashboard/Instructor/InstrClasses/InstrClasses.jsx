@@ -26,6 +26,7 @@ const InstrClasses = () => {
                             </th>
                             <th>My class</th>
                             <th>Price</th>
+                            <th>Total student</th>
                             <th>status</th>
                             <th>Action</th>
                         </tr>
@@ -51,6 +52,7 @@ const InstrClasses = () => {
                                 <td>
                                     ${clas.price}
                                 </td>
+                                <th></th>
                                 <td>panding</td>
                                 <th>
                                     <button className="btn btn-outline border-0 btn-secondary btn-xs"><FaTrash></FaTrash></button>
