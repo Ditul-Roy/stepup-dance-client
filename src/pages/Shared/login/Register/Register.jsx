@@ -4,12 +4,15 @@ import { useForm, } from 'react-hook-form';
 import useAuth from '../../../../hook/UseAuth';
 import Swal from 'sweetalert2';
 import SocialLogin from '../socialLogin/SocialLogin';
+import { FaEye } from 'react-icons/fa';
 
 const image_hosting_key = import.meta.env.VITE_image_upload_key;
 
 const Register = () => {
     const { signUpUserWithEmail, updateUserProfile } = useAuth();
     const navigate = useNavigate();
+    const [role, setRole] = useState('')
+    const [togglePassword, setTogglePassword] = useState(false);
     const {
         register,
         handleSubmit,
@@ -20,10 +23,10 @@ const Register = () => {
 
     const image_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
-    const onsubmit = async (form) => {
+    const onsubmit = (form) => {
         const formData = new FormData();
         formData.append('image', form.image[0])
-        await fetch(image_hosting_url, {
+        fetch(image_hosting_url, {
             method: 'POST',
             body: formData
         })
@@ -32,18 +35,18 @@ const Register = () => {
                 // console.log(data);
                 if (data.success) {
                     const imageURL = data.data.display_url;
-                    // setI(imageURL)
+                    setRole('student');
                     const { name, email, password, confirm } = form;
-                    const newUser = { name, email, password, confirm, image: imageURL };
+                    const newUser = { name, email, password, confirm, image: imageURL, role };
                     console.log(newUser);
-                    fetch('',{
+                    fetch('http://localhost:5000/users', {
                         method: 'POST',
                         headers: {
                             "content-type": "application/json"
                         },
                         body: JSON.stringify(newUser)
                     });
-                     signUpUserWithEmail(newUser.email, newUser.password)
+                    signUpUserWithEmail(newUser.email, newUser.password)
                         .then(() => {
                             Swal.fire({
                                 position: 'center',
@@ -70,7 +73,10 @@ const Register = () => {
             })
     }
 
-
+    const handleShowHide = (e) => {
+        e.preventDefault();
+        setTogglePassword(!togglePassword)
+    }
 
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -96,11 +102,16 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" placeholder="password" {...register('password', {
-                                required: true,
-                                minLength: 6,
-                                pattern: /(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])/
-                            })} className="input input-bordered" />
+                            <div className='relative'>
+                                <input type={togglePassword ? 'text' : 'password'} placeholder="password" {...register('password', {
+                                    required: true,
+                                    minLength: 6,
+                                    pattern: /(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])/
+                                })} className="input w-full input-bordered" />
+
+                                <button className='btn btn-outline btn-xs border-0 absolute top-4 right-0 w-10' onClick={handleShowHide}>{togglePassword ? <FaEye></FaEye> : <FaEye></FaEye>}</button>
+                            </div>
+
                             {errors.password?.type === 'required' && <p>password is required.</p>}
                             {errors.password?.type === 'minLength' && <p>password is at least 6 charrecter.</p>}
                             {errors.password?.type === 'pattern' && <p>password is an spcial charrecter, password is an lowerCase, password is an UppserCase.</p>}
@@ -109,10 +120,14 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Confirm Password</span>
                             </label>
-                            <input type="password" placeholder="confirm password" {...register('confirm', {
-                                required: true,
-                                validate: value => value === watch('password') || 'The passwords do not match'
-                            })} className="input input-bordered" />
+                            <div className='relative'>
+                                <input type={togglePassword ? 'text' : 'password'} placeholder="confirm password" {...register('confirm', {
+                                    required: true,
+                                    validate: value => value === watch('password') || 'The passwords do not match'
+                                })} className="input w-full input-bordered" />
+                                <button className='btn btn-outline btn-xs border-0 absolute top-4 right-0 w-10' onClick={handleShowHide}>{togglePassword ? <FaEye></FaEye> : <FaEye></FaEye>}</button>
+                            </div>
+
                             {errors.confirm && <p>confirm password is required.</p>}
                             {errors.confirm?.type === 'validate' && <p>password is required.</p>}
                         </div>
