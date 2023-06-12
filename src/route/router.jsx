@@ -13,6 +13,8 @@ import InstrClasses from "../pages/Dashboard/Instructor/InstrClasses/InstrClasse
 import AddClass from "../pages/Dashboard/Instructor/AddClass/AddClass";
 import Payment from "../pages/Dashboard/Student/Payment/Payment";
 import ProvateRoute from "./ProvateRoute";
+import ManageUser from "../pages/Dashboard/Admin/Admin/ManageUser/ManageUser";
+import ManageClass from "../pages/Dashboard/Admin/Admin/ManageClass/ManageClass";
 
 const router = createBrowserRouter([
     {
@@ -68,6 +70,14 @@ const router = createBrowserRouter([
         {
           path: 'addClass',
           element: <AddClass></AddClass>
+        },
+        {
+          path: 'manageUser',
+          element: <ManageUser></ManageUser>
+        },
+        {
+          path: 'manageClass',
+          element: <ManageClass></ManageClass>
         }
       ]
     }

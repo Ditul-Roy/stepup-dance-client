@@ -4,7 +4,8 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { FaHome, FaBookmark, FaWallet, FaUserAlt, FaBook } from 'react-icons/fa';
 
 const DashboardLayout = () => {
-    const isInstructor = true;
+    const isInstructor = false;
+    const isAdmin = true;
     return (
         <div className='pt-10'>
             <div className="drawer lg:drawer-open">
@@ -19,9 +20,9 @@ const DashboardLayout = () => {
                     <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
 
                         {
-                            isInstructor ? <>
-                                <li><NavLink to='/dashboard/addClass'><FaBookmark></FaBookmark> Add class</NavLink></li>
-                                <li><NavLink to='/dashboard/instructorClasses'><FaBook></FaBook> My class</NavLink></li>
+                            isAdmin ? <>
+                                <li><NavLink to='/dashboard/manageUser'><FaBookmark></FaBookmark> Add class</NavLink></li>
+                                <li><NavLink to='/dashboard/instructorClasses || dashboard/manageUser'><FaBook></FaBook> My class</NavLink></li>
                             </> : <>
                                 <li><NavLink to='/dashboard/myClass'><FaHome></FaHome> My class</NavLink></li>
                                 <li><NavLink to='/dashboard/enrolled'><FaBookmark></FaBookmark> My enrolled class</NavLink></li>

@@ -52,10 +52,10 @@ const InstrClasses = () => {
                                 <td>
                                     ${clas.price}
                                 </td>
-                                <th></th>
+                                <th>{clas.total_students > 0 ? clas.total_students : 0}</th>
                                 <td>panding</td>
                                 <th>
-                                    <button className="btn btn-outline border-0 btn-secondary btn-xs"><FaTrash></FaTrash></button>
+                                    <button className="btn btn-outline border-0 btn-secondary btn-xs">u</button>
                                 </th>
                             </tr>)
                         }

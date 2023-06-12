@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useForm, } from 'react-hook-form';
 import useAuth from '../../../../hook/UseAuth';
 import Swal from 'sweetalert2';
 import SocialLogin from '../socialLogin/SocialLogin';
+
+const image_hosting_key = import.meta.env.VITE_image_upload_key;
 
 const Register = () => {
     const { signUpUserWithEmail, updateUserProfile } = useAuth();
@@ -16,31 +18,56 @@ const Register = () => {
         formState: { errors },
     } = useForm();
 
-    const onsubmit = form => {
-        console.log(form);
-        // signUpUserWithEmail(form.email, form.password)
-        //     .then(() => {
-        //         Swal.fire({
-        //             position: 'center',
-        //             icon: 'success',
-        //             title: 'User successfully created',
-        //             showConfirmButton: false,
-        //             timer: 1500
-        //           })
-        //         updateUserProfile(form.name, form.photoURL)
-        //             .then(() => {
-        //                 navigate('/')
-        //             })
-        //             .catch(err=>{
-        //                 console.log(err);
-        //             })
-        //         reset();    
-        //     })
+    const image_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
-        //     .catch(err => {
+    const onsubmit = async (form) => {
+        const formData = new FormData();
+        formData.append('image', form.image[0])
+        await fetch(image_hosting_url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data);
+                if (data.success) {
+                    const imageURL = data.data.display_url;
+                    // setI(imageURL)
+                    const { name, email, password, confirm } = form;
+                    const newUser = { name, email, password, confirm, image: imageURL };
+                    console.log(newUser);
+                    fetch('',{
+                        method: 'POST',
+                        headers: {
+                            "content-type": "application/json"
+                        },
+                        body: JSON.stringify(newUser)
+                    });
+                     signUpUserWithEmail(newUser.email, newUser.password)
+                        .then(() => {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'User successfully created',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            updateUserProfile(newUser.name, newUser.image)
+                                .then(() => {
+                                    navigate('/')
+                                })
+                                .catch(err => {
+                                    console.log(err);
+                                })
+                            reset();
+                        })
 
-        //         console.log(err);
-        //     })
+                        .catch(err => {
+
+                            console.log(err);
+                        })
+                }
+            })
     }
 
 
@@ -93,7 +120,7 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">PhotoURL</span>
                             </label>
-                            <input type="text" placeholder="photoURL" {...register('photoURL', { required: true })} className="input input-bordered" />
+                            <input type="file" {...register('image', { required: true })} className="file-input input-bordered" />
                             {errors.photoURL && <p>photoURL is required.</p>}
                         </div>
                         <div className="form-control mt-6">

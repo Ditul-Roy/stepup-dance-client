@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import useAuth from '../../../../hook/UseAuth';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 const AddClass = () => {
 
+
+    // price take parseFloat korte hobe
+
+
+    
     const { user } = useAuth();
-    // console.log(user);
+    const navigate = useNavigate();
+        // console.log(user);
     const { register, reset, formState: { errors }, handleSubmit } = useForm();
 
     const onSubmit = data => {
@@ -23,6 +30,7 @@ const AddClass = () => {
             console.log(data);
             if(data.insertedId){
                 reset();
+                navigate('/dashboard/instructorClasses')
             }
          })
     }

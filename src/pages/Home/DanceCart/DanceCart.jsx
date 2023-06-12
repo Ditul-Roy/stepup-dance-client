@@ -6,10 +6,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const DanceCart = ({ dance, refetch }) => {
     const {_id, available_seats, instructor_name, image, name, total_students, price } = dance;
 
-
-    // TODO:Update available_seats count number is not finished
-
-
     const [seat, setSeat] = useState(available_seats);
     // const total = cart.reduce((sum, item) => item.price + sum, 0);
 
@@ -44,7 +40,6 @@ const DanceCart = ({ dance, refetch }) => {
             })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if(data.insertedId){
                     // refetch()
                     // 
@@ -53,7 +48,6 @@ const DanceCart = ({ dance, refetch }) => {
                     })
                     .then(res => res.json())
                     .then(data =>{
-                        console.log(data);
                         if(data.modifiedCount > 0){
                             if(available_seats > 0){
                                 setSeat(prevSeat => prevSeat - 1)
