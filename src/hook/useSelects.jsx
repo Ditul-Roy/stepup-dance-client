@@ -5,15 +5,10 @@ import { useQuery } from '@tanstack/react-query';
 const useSelects = () => {
 
     const {user} = useAuth();
-    const token = localStorage.getItem('class-access-token')
     const {refetch, data: selects = []} = useQuery({
-        queryKey: ['selects', user?.email],
+        queryKey: ['users', user?.email],
         queryFn: async () => {
-           const res =await fetch(`http://localhost:5000/selects?email=${user?.email}`,{
-                headers: {
-                    authorization: `bearer ${token}`
-                }
-           });
+           const res =await fetch(`http://localhost:5000/selects?email=${user?.email}`);
             return res.json()
         }   
     })

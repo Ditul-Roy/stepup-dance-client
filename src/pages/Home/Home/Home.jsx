@@ -7,7 +7,6 @@ import Facility from '../Extra/Facility';
 const Home = () => {
     return (
         <div>
-            <h3>hello </h3>
             <BannerSlider></BannerSlider>
             <Facility></Facility>
             <Classes></Classes>

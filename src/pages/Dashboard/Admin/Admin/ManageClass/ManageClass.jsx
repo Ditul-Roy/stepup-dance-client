@@ -1,10 +1,13 @@
 import React from 'react';
 import useDances from '../../../../../hook/useDances';
 import { Link } from 'react-router-dom';
+import useAdmin from '../../../../../hook/useAdmin';
 
 const ManageClass = () => {
     const [dances, refetch] = useDances();
-    console.log(dances);
+    const [isAdmin] = useAdmin();
+    // console.log(dances);
+    console.log(isAdmin);
 
     const aprovedClass = id => {
         fetch(`http://localhost:5000/classes/aproved/${id}`, {
@@ -28,19 +31,6 @@ const ManageClass = () => {
                 }
             })
     }
-
-    // const handleModal = () => {
-    //     <dialog id="my_modal_1" className="modal">
-    //         <form method="dialog" className="modal-box">
-    //             <h3 className="font-bold text-lg">Hello!</h3>
-    //             <p className="py-4">Press ESC key or click the button below to close</p>
-    //             <div className="modal-action">
-    //                 {/* if there is a button in form, it will close the modal */}
-    //                 <button className="btn">Close</button>
-    //             </div>
-    //         </form>
-    //     </dialog>
-    // }
 
     return (
         <div className='w-full'>
@@ -92,8 +82,8 @@ const ManageClass = () => {
                                     {dance.status}
                                 </td>
                                 <td>
-                                    <button onClick={() => aprovedClass(dance._id)} className='btn btn-xs btn-warning '>aprove</button>
-                                    <button onClick={() => deniedClass(dance._id)} className='btn btn-xs btn-warning my-2'>dany</button>
+                                    <button onClick={() => aprovedClass(dance._id)} className='btn btn-xs btn-warning ' disabled={dance.status === 'aproved'}>aprove</button>
+                                    <button onClick={() => deniedClass(dance._id)} className='btn btn-xs btn-warning my-2' disabled={dance.status === 'denied'}>dany</button>
                                     <button className='btn btn-xs btn-warning'><Link to='/dashboard/feedback'>feedback</Link></button>
                                 </td>
                             </tr>)

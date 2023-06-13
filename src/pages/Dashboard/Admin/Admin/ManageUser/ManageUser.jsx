@@ -1,19 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+
+import useUsers from '../../../../../hook/useUsers';
 
 const ManageUser = () => {
-    const token = localStorage.getItem('class-access-token')
-    const { data: users = [], refetch } = useQuery({
-        queryKey: ['users'],
-        queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users', {
-                headers: {
-                    authorization: `bearer ${token}`
-                }
-            });
-            return res.json()
-        }
-    })
+   const [users, refetch] = useUsers();
     const makeAdmin = id => {
         fetch(`http://localhost:5000/users/admin/${id}`, {
             method: 'PATCH'

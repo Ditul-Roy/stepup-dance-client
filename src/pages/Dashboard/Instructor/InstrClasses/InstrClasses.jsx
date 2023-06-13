@@ -5,15 +5,10 @@ import useAuth from '../../../../hook/UseAuth';
 const InstrClasses = () => {
 
     const { user } = useAuth();
-    const token = localStorage.getItem('class-access-token')
     const { data: classes = [], refetch } = useQuery({
         queryKey: ['classes', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/classes?email=${user?.email}`,{
-                headers: {
-                    authorization: `bearer ${token}`
-                }
-            })
+            const res = await fetch(`http://localhost:5000/classes?email=${user?.email}`)
             return res.json()
         }
     })

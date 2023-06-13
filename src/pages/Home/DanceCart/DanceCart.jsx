@@ -62,7 +62,7 @@ const DanceCart = ({ dance, refetch }) => {
     }
 
     return (
-        <motion.div className={seat === 0 ? 'card w-80 mb-10 glass bg-red-400' : 'card w-80 mb-10 glass bg-slate-200'}  animate={{ x: [0, 100, 0] }}>
+        <motion.div className={seat === 0 ? 'card w-80 mb-10 glass bg-red-400' : 'card w-80 mb-10 glass bg-slate-200'} animate={{ x: [0, 100, 0] }}>
             <figure><img className='h-48' src={image} alt="car!" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>

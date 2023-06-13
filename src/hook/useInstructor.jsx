@@ -1,0 +1,18 @@
+
+import { useQuery } from '@tanstack/react-query';
+import useAuth from './UseAuth';
+
+const useInstructor = () => {
+    const { user, loading } = useAuth();
+    const { data: isInstructor, isloading: instructorLoading } = useQuery({
+        queryKey: ['isInstructor', user?.email],
+        enabled: !loading,
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/users/instructor/${user?.email}`);
+            return res.json()
+        }
+    })
+    return [isInstructor, instructorLoading]
+};
+
+export default useInstructor;
