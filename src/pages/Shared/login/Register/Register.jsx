@@ -23,7 +23,7 @@ const Register = () => {
 
     const image_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
-    const onsubmit = (form) => {
+    const onsubmit =async (form) => {
         const formData = new FormData();
         formData.append('image', form.image[0])
         fetch(image_hosting_url, {
