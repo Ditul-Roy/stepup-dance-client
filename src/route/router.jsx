@@ -15,6 +15,7 @@ import Payment from "../pages/Dashboard/Student/Payment/Payment";
 import ProvateRoute from "./ProvateRoute";
 import ManageUser from "../pages/Dashboard/Admin/Admin/ManageUser/ManageUser";
 import ManageClass from "../pages/Dashboard/Admin/Admin/ManageClass/ManageClass";
+import FeedBack from "../pages/Dashboard/Admin/Admin/FeedBack/FeedBack";
 
 const router = createBrowserRouter([
     {
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
         {
           path: 'manageClass',
           element: <ManageClass></ManageClass>
+        },
+        {
+          path: 'feedback',
+          element: <FeedBack></FeedBack>
         }
       ]
     }

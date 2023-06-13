@@ -11,7 +11,7 @@ const image_hosting_key = import.meta.env.VITE_image_upload_key;
 const Register = () => {
     const { signUpUserWithEmail, updateUserProfile } = useAuth();
     const navigate = useNavigate();
-    const [role, setRole] = useState('')
+    const [role, setRole] = useState('student')
     const [togglePassword, setTogglePassword] = useState(false);
     const {
         register,
@@ -26,7 +26,7 @@ const Register = () => {
     const onsubmit =async (form) => {
         const formData = new FormData();
         formData.append('image', form.image[0])
-        fetch(image_hosting_url, {
+        await fetch(image_hosting_url, {
             method: 'POST',
             body: formData
         })

@@ -2,10 +2,15 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 
 const ManageUser = () => {
+    const token = localStorage.getItem('class-access-token')
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res =await fetch('http://localhost:5000/users');
+            const res = await fetch('http://localhost:5000/users', {
+                headers: {
+                    authorization: `bearer ${token}`
+                }
+            });
             return res.json()
         }
     })
@@ -13,30 +18,31 @@ const ManageUser = () => {
         fetch(`http://localhost:5000/users/admin/${id}`, {
             method: 'PATCH'
         })
-        .then(res => res.json())
-        .then(data =>{
-            console.log(data);
-            if(data.modifiedCount > 0){
-                refetch();
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount > 0) {
+                    refetch();
+                }
+            })
     }
 
     const makeInstructor = id => {
         fetch(`http://localhost:5000/users/instructor/${id}`, {
             method: 'PATCH'
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            if(data.modifiedCount > 0){
-                refetch();
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount > 0) {
+                    refetch();
+                }
+            })
     }
     return (
         <div className='w-full mx-10'>
-            <h4 className='text-xl text-center '>this is manage user</h4>
+            <h4 className='text-xl text-center '>User management</h4>
+            <p className='divider my-4'></p>
             <div className="">
                 <table className="table">
                     {/* head */}
@@ -74,8 +80,8 @@ const ManageUser = () => {
                                 </td>
                                 <td>{user?.role ? user.role : 'student'}</td>
                                 <th>
-                                    <button onClick={()=>makeAdmin(user._id)} className='btn btn-xs btn-warning' disabled={user.role === 'admin'}>admin</button>
-                                    <button onClick={()=>makeInstructor(user._id)} disabled={user.role === 'instructor'} className= 'btn btn-warning btn-xs'>instructor</button>
+                                    <button onClick={() => makeAdmin(user._id)} className='btn btn-xs btn-warning' disabled={user.role === 'admin'}>admin</button>
+                                    <button onClick={() => makeInstructor(user._id)} disabled={user.role === 'instructor'} className='btn btn-warning btn-xs'>instructor</button>
                                 </th>
                             </tr>)
                         }

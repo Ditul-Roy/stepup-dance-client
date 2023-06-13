@@ -1,15 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import useAuth from '../../../../hook/UseAuth';
-import { FaTrash } from 'react-icons/fa';
 
 const InstrClasses = () => {
 
     const { user } = useAuth();
+    const token = localStorage.getItem('class-access-token')
     const { data: classes = [], refetch } = useQuery({
         queryKey: ['classes', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/classes?email=${user?.email}`)
+            const res = await fetch(`http://localhost:5000/classes?email=${user?.email}`,{
+                headers: {
+                    authorization: `bearer ${token}`
+                }
+            })
             return res.json()
         }
     })
@@ -53,7 +57,7 @@ const InstrClasses = () => {
                                     ${clas.price}
                                 </td>
                                 <th>{clas.total_students > 0 ? clas.total_students : 0}</th>
-                                <td>panding</td>
+                                <td>{clas.status}</td>
                                 <th>
                                     <button className="btn btn-outline border-0 btn-secondary btn-xs">u</button>
                                 </th>

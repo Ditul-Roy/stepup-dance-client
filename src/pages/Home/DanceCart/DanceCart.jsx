@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import useAuth from '../../../hook/UseAuth';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { motion } from "framer-motion"
 
 const DanceCart = ({ dance, refetch }) => {
     const {_id, available_seats, instructor_name, image, name, total_students, price } = dance;
@@ -61,7 +62,7 @@ const DanceCart = ({ dance, refetch }) => {
     }
 
     return (
-        <div className={seat === 0 ? 'card w-80 mb-10 glass bg-red-400' : 'card w-80 mb-10 glass bg-slate-200'}>
+        <motion.div className={seat === 0 ? 'card w-80 mb-10 glass bg-red-400' : 'card w-80 mb-10 glass bg-slate-200'}  animate={{ x: [0, 100, 0] }}>
             <figure><img className='h-48' src={image} alt="car!" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
@@ -75,7 +76,7 @@ const DanceCart = ({ dance, refetch }) => {
                     <button onClick={()=>handleSelect(_id)} disabled={seat === 0} className="btn btn-primary">enroll now</button>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

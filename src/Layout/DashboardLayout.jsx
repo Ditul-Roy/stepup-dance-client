@@ -4,11 +4,11 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { FaHome, FaBookmark, FaWallet, FaUserAlt, FaBook } from 'react-icons/fa';
 
 const DashboardLayout = () => {
-    const isInstructor = false;
+    // const isInstructor = true;
     const isAdmin = true;
     return (
         <div className='pt-10'>
-            <div className="drawer lg:drawer-open">
+            <div className=" drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col items-center justify-center">
                     <Outlet></Outlet>
@@ -17,12 +17,12 @@ const DashboardLayout = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
+                    <ul className="menu p-4 w-40 h-full bg-base-200 text-base-content">
 
                         {
-                            isAdmin ? <>
+                             isAdmin ? <>
                                 <li><NavLink to='/dashboard/manageUser'><FaBookmark></FaBookmark> Add class</NavLink></li>
-                                <li><NavLink to='/dashboard/instructorClasses || dashboard/manageUser'><FaBook></FaBook> My class</NavLink></li>
+                                <li><NavLink to='/dashboard/manageClass'><FaBook></FaBook> My class</NavLink></li>
                             </> : <>
                                 <li><NavLink to='/dashboard/myClass'><FaHome></FaHome> My class</NavLink></li>
                                 <li><NavLink to='/dashboard/enrolled'><FaBookmark></FaBookmark> My enrolled class</NavLink></li>

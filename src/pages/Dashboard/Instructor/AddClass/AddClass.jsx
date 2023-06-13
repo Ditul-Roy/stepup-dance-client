@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 const AddClass = () => {
-
+    const [status, setStatus] = useState('panding');
 
     // price take parseFloat korte hobe
 
@@ -16,8 +16,9 @@ const AddClass = () => {
     const { register, reset, formState: { errors }, handleSubmit } = useForm();
 
     const onSubmit = data => {
-        const savedClass = {name: data.name, image: data.image, instructor_name: data.instructor_name, email: data.email, available_seats: parseInt(data.available_seats), price: parseInt(data.price) }
-        console.log(data);
+        setStatus('panding')
+        const savedClass = {name: data.name, image: data.image, instructor_name: data.instructor_name, email: data.email, available_seats: parseInt(data.available_seats), price: parseInt(data.price), status }
+        console.log(savedClass);
          fetch('http://localhost:5000/classes',{
             method: 'POST',
             headers: {
