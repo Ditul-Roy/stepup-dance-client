@@ -5,7 +5,7 @@ import useUsers from '../../../../../hook/useUsers';
 const ManageUser = () => {
    const [users, refetch] = useUsers();
     const makeAdmin = id => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`https://dance-ecademy-server.vercel.app/users/admin/${id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
@@ -25,7 +25,7 @@ const ManageUser = () => {
     }
 
     const makeInstructor = user => {
-        fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+        fetch(`https://dance-ecademy-server.vercel.app/users/instructor/${user._id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
@@ -33,7 +33,7 @@ const ManageUser = () => {
                 console.log(data);
                 const savedUser = {name: user.name, email: user.email, image: user.image}
                 if (data.modifiedCount > 0) {
-                    fetch('http://localhost:5000/instructors', {
+                    fetch('https://dance-ecademy-server.vercel.app/instructors', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

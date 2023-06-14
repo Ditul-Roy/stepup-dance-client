@@ -37,7 +37,7 @@ const AddClass = () => {
                     const savedClass = { name: data.name, image: imageURL, instructor_name: data.instructor_name, email: data.email, available_seats: parseInt(data.available_seats), price: parseInt(data.price), status }
                     console.log(savedClass);
 
-                    fetch('http://localhost:5000/classes', {
+                    fetch('https://dance-ecademy-server.vercel.app/classes', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

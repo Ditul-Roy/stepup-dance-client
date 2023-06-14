@@ -6,7 +6,7 @@ const ManageClass = () => {
     const [dances, refetch] = useDances();
 
     const aprovedClass = id => {
-        fetch(`http://localhost:5000/classes/aproved/${id}`, {
+        fetch(`https://dance-ecademy-server.vercel.app/classes/aproved/${id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
@@ -17,7 +17,7 @@ const ManageClass = () => {
             })
     }
     const deniedClass = id => {
-        fetch(`http://localhost:5000/classes/denied/${id}`, {
+        fetch(`https://dance-ecademy-server.vercel.app/classes/denied/${id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())

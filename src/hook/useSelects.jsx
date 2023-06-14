@@ -8,7 +8,7 @@ const useSelects = () => {
     const {refetch, data: selects = []} = useQuery({
         queryKey: ['users', user?.email],
         queryFn: async () => {
-           const res =await fetch(`http://localhost:5000/selects?email=${user?.email}`);
+           const res =await fetch(`https://dance-ecademy-server.vercel.app/selects?email=${user?.email}`);
             return res.json()
         }   
     })

@@ -17,7 +17,7 @@ const SocialLogin = () => {
                 // console.log(loggedUser);
                 const newUser = { name: loggedUser.displayName, email: loggedUser.email, image: loggedUser.photoURL, role };
                 console.log(newUser);
-                fetch('http://localhost:5000/users', {
+                fetch('https://dance-ecademy-server.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         "content-type": "application/json"

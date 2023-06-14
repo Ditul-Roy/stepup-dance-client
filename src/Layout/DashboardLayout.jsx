@@ -29,7 +29,7 @@ const DashboardLayout = () => {
                         {
                             isInstructor?.instructor === true && <>
                                 <li><NavLink to='/dashboard/addClass'><FaBook></FaBook> add class</NavLink></li>
-                                <li><NavLink to='/dashboard/myClass'><FaBook></FaBook> my class</NavLink></li>
+                                <li><NavLink to='/dashboard/instructorClasses'><FaBook></FaBook> my class</NavLink></li>
                             </>
                         }
                         {isStudent?.student === true &&  <>

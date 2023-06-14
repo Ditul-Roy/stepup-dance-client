@@ -7,15 +7,15 @@ import useAuth from '../../../../hook/UseAuth';
 const stripPromise = loadStripe(import.meta.env.VITE_PAYMENT_PK)
 const Payment = ({ pay }) => {
     const { user } = useAuth()
-    // console.log(pay);
-    const price = pay.price;
+    console.log(pay);
+    // const price = pay.price;
     // console.log(price);
 
     return (
         <div className='w-96'>
-            <h3 className='text-3xl text-center underline my-10'>taka de taratari: {user?.displayName}</h3>
+            <h3 className='text-3xl text-center underline my-10'>your payment hare: {user?.displayName}</h3>
             <Elements stripe={stripPromise}>
-                <PayChackOut price={price}></PayChackOut>
+                <PayChackOut></PayChackOut>
             </Elements>
         </div>
     );

@@ -32,7 +32,7 @@ const DanceCart = ({ dance, refetch }) => {
         }
         else {
             const selectedClass = { available_seats, instructor_name, image, name, total_students, price, email: user?.email};
-            fetch('http://localhost:5000/selects',{
+            fetch('https://dance-ecademy-server.vercel.app/selects',{
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -44,7 +44,7 @@ const DanceCart = ({ dance, refetch }) => {
                 if(data.insertedId){
                     refetch()
                     // 
-                    fetch(`http://localhost:5000/classes/${id}/book`,{
+                    fetch(`https://dance-ecademy-server.vercel.app/classes/${id}/book`,{
                         method: 'PUT'
                     })
                     .then(res => res.json())
@@ -99,7 +99,7 @@ export default DanceCart;
 
 
 
- // fetch(`http://localhost:5000/dances/${id}`, {
+ // fetch(`https://dance-ecademy-server.vercel.app/dances/${id}`, {
             //     method: "PATCH"
             // })
             //     .then(res => res.json())

@@ -39,7 +39,7 @@ const Register = () => {
                     const { name, email, password, confirm } = form;
                     const newUser = { name, email, password, confirm, image: imageURL, role };
                     console.log(newUser);
-                    fetch('http://localhost:5000/users', {
+                    fetch('https://dance-ecademy-server.vercel.app/users', {
                         method: 'POST',
                         headers: {
                             "content-type": "application/json"

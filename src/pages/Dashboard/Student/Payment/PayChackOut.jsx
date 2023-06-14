@@ -1,8 +1,8 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import useAuth from '../../../../hook/UseAuth';
 
-const PayChackOut = ({ price }) => {
+const PayChackOut = () => {
 
     // TODO: payment gatway is not finished
 
