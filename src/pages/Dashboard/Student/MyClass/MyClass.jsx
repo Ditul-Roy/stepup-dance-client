@@ -20,7 +20,7 @@ const MyClass = () => {
     }
 
     const handleDelete = select => {
-// TODO: delete button work is not finished
+
 
         Swal.fire({
             title: 'Are you sure?',

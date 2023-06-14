@@ -6,9 +6,6 @@ const BannerSlider = () => {
     return (
         <div className="carousel lg:mx-40 rounded">
 
-
-            {/* TODO: some banner slider work do not finished.  */}
-
             <SectionTitle heading={'slider'} subHeading={'ths is'}></SectionTitle>
             <div id="slide1" className="carousel-item relative w-full lg:h-[600px] bg-black bg-opacity-40">
                 <img src="https://i.ibb.co/wNkGb93/pngegg-1.png" className="w-full" />

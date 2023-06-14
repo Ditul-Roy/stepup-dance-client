@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 import SectionTitle from '../../Shared/sectionTitle/SectionTitle';
 
 const Facility = () => {
-    // TODO: the section not finished
+
     return (
         <div className=" my-10 text-center">
             <SectionTitle heading={'Our facility'} subHeading={'we are servide fantastic service'}></SectionTitle>

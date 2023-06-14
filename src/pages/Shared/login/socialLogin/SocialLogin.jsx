@@ -31,7 +31,7 @@ const SocialLogin = () => {
                     showConfirmButton: false,
                     timer: 1500
                 })
-                // navigatate('/')
+                navigatate('/')
 
             })
             .catch(err => {

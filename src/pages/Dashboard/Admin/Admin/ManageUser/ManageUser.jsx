@@ -1,4 +1,5 @@
 
+import Swal from 'sweetalert2';
 import useUsers from '../../../../../hook/useUsers';
 
 const ManageUser = () => {
@@ -11,6 +12,13 @@ const ManageUser = () => {
             .then(data => {
                 console.log(data);
                 if (data.modifiedCount > 0) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
                     refetch();
                 }
             })
@@ -23,7 +31,7 @@ const ManageUser = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                const savedUser = {name: user.name, email: user.email, image: user.image, role: user.role}
+                const savedUser = {name: user.name, email: user.email, image: user.image}
                 if (data.modifiedCount > 0) {
                     fetch('http://localhost:5000/instructors', {
                         method: 'POST',
@@ -32,7 +40,19 @@ const ManageUser = () => {
                         },
                         body: JSON.stringify(savedUser)
                     })
-                    refetch();
+                    .then(res => res.json())
+                    .then(data => {
+                        if(data.insertedId){
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Your work has been saved',
+                                showConfirmButton: false,
+                                timer: 1500
+                              })
+                              refetch();
+                        }
+                    })
                 }
             })
     }

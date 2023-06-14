@@ -1,13 +1,9 @@
 import React from 'react';
 import useDances from '../../../../../hook/useDances';
 import { Link } from 'react-router-dom';
-import useAdmin from '../../../../../hook/useAdmin';
 
 const ManageClass = () => {
     const [dances, refetch] = useDances();
-    const [isAdmin] = useAdmin();
-    // console.log(dances);
-    console.log(isAdmin);
 
     const aprovedClass = id => {
         fetch(`http://localhost:5000/classes/aproved/${id}`, {

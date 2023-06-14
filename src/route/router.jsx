@@ -18,11 +18,13 @@ import ManageClass from "../pages/Dashboard/Admin/Admin/ManageClass/ManageClass"
 import FeedBack from "../pages/Dashboard/Admin/Admin/FeedBack/FeedBack";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
       path: "/",
       element: <MainLayout></MainLayout>,
+      errorElement: <ErrorPage></ErrorPage>,
       children: [
         {
           path: '/',
@@ -53,6 +55,7 @@ const router = createBrowserRouter([
     {
       path: '/dashboard',
       element: <ProvateRoute><DashboardLayout></DashboardLayout></ProvateRoute>,
+      errorElement: <ErrorPage></ErrorPage>,
       children: [
         {
           path: 'myClass',
