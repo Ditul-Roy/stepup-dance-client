@@ -2,14 +2,15 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 
 const useInstructors = () => {
-    const {refetch, data: instructors = [] } = useQuery({
+    const {refetch, data: instructors = [], isLoading } = useQuery({
         queryKey: ['instructors',],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/instructors');
             return res.json()
         }
     })
-    return [instructors, refetch]
+    // {instructors.map(i => console.log(i))}
+    return [instructors,isLoading, refetch]
 };
 
 export default useInstructors;

@@ -16,14 +16,22 @@ const ManageUser = () => {
             })
     }
 
-    const makeInstructor = id => {
-        fetch(`http://localhost:5000/users/instructor/${id}`, {
+    const makeInstructor = user => {
+        fetch(`http://localhost:5000/users/instructor/${user._id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                const savedUser = {name: user.name, email: user.email, image: user.image, role: user.role}
                 if (data.modifiedCount > 0) {
+                    fetch('http://localhost:5000/instructors', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(savedUser)
+                    })
                     refetch();
                 }
             })
@@ -67,10 +75,10 @@ const ManageUser = () => {
                                 <td>
                                     {user?.email}
                                 </td>
-                                <td>{user?.role ? user.role : 'student'}</td>
+                                <td>{user?.role}</td>
                                 <th>
                                     <button onClick={() => makeAdmin(user._id)} className='btn btn-xs btn-warning' disabled={user.role === 'admin'}>admin</button>
-                                    <button onClick={() => makeInstructor(user._id)} disabled={user.role === 'instructor'} className='btn btn-warning btn-xs'>instructor</button>
+                                    <button onClick={() => makeInstructor(user)} disabled={user.role === 'instructor'} className='btn btn-warning btn-xs'>instructor</button>
                                 </th>
                             </tr>)
                         }

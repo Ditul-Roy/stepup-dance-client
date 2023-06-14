@@ -42,7 +42,7 @@ const DanceCart = ({ dance, refetch }) => {
             .then(res => res.json())
             .then(data => {
                 if(data.insertedId){
-                    // refetch()
+                    refetch()
                     // 
                     fetch(`http://localhost:5000/classes/${id}/book`,{
                         method: 'PUT'

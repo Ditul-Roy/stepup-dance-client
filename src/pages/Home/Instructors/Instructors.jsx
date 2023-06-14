@@ -19,8 +19,7 @@ const Instructors = () => {
                                 </th>
                                 <th>Instructor</th>
                                 <th>Email</th>
-                                <th>Number of class</th>
-                                <th>Name of class</th>
+                                <th>role</th>
                                 <th>action</th>
                             </tr>
                         </thead>
@@ -38,15 +37,16 @@ const Instructors = () => {
                                                 </div>
                                             </div>
                                             <div>
-                                                {instructor.instructor_name}
+                                                {instructor.name}
                                             </div>
                                         </div>
                                     </td>
                                     <td>
                                         {instructor.email}
                                     </td>
-                                    <td>{instructor.number_of_classes}</td>
-                                    <td>{instructor.name_of_classes.map((clas, index) => <p key={index}>{clas}</p>)}</td>
+                                    <td>
+                                        {instructor.role}
+                                    </td>
                                     <th>
                                         <button className="btn btn-ghost btn-xs">details</button>
                                     </th>

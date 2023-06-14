@@ -9,31 +9,51 @@ const AddClass = () => {
     // price take parseFloat korte hobe
 
 
-    
+
     const { user } = useAuth();
     const navigate = useNavigate();
-        // console.log(user);
+    // console.log(user);
+
     const { register, reset, formState: { errors }, handleSubmit } = useForm();
 
-    const onSubmit = data => {
-        setStatus('panding')
-        const savedClass = {name: data.name, image: data.image, instructor_name: data.instructor_name, email: data.email, available_seats: parseInt(data.available_seats), price: parseInt(data.price), status }
-        console.log(savedClass);
-         fetch('http://localhost:5000/classes',{
+    const image_hosting_key = import.meta.env.VITE_image_upload_key;
+
+    const onSubmit = async (data) => {
+
+        const image_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
+
+        const formData = new FormData();
+        formData.append('image', data.image[0])
+        await fetch(image_hosting_url, {
             method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(savedClass)
-         })
-         .then(res => res.json())
-         .then(data =>{
-            console.log(data);
-            if(data.insertedId){
-                reset();
-                navigate('/dashboard/instructorClasses')
-            }
-         })
+            body: formData
+        })
+            .then(res => res.json())
+            .then(resData => {
+                if (resData.success) {
+                    const imageURL = resData.data.display_url;
+                    setStatus('panding');
+
+                    const savedClass = { name: data.name, image: imageURL, instructor_name: data.instructor_name, email: data.email, available_seats: parseInt(data.available_seats), price: parseInt(data.price), status }
+                    console.log(savedClass);
+
+                    fetch('http://localhost:5000/classes', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(savedClass)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+                            if (data.insertedId) {
+                                reset();
+                                navigate('/dashboard/instructorClasses')
+                            }
+                        })
+                }
+            })
     }
     return (
         <div className="w-full">
@@ -52,8 +72,8 @@ const AddClass = () => {
                         <label className="label">
                             <span className="label-text">class image</span>
                         </label>
-                        <input type="text" placeholder="imageURL" {...register("image", { required: true })} className="input input-bordered" />
-                        {errors.image && <p>class image is required.</p>}
+                        <input type="file" {...register('image', { required: true })} className="file-input input-bordered" />
+                            {errors.photoURL && <p>photoURL is required.</p>}
                     </div>
                     <div className="form-control">
                         <label className="label">

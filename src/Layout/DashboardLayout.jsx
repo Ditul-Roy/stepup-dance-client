@@ -10,9 +10,6 @@ const DashboardLayout = () => {
     const [isInstructor] = useInstructor();
     const [isAdmin] = useAdmin();
     const [isStudent] = useStudent();
-    console.log(isAdmin);
-    console.log(isInstructor);
-    console.log(isStudent);
     return (
         <div className='pt-10'>
             <div className=" drawer lg:drawer-open">

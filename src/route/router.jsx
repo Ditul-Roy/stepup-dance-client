@@ -16,6 +16,8 @@ import ProvateRoute from "./ProvateRoute";
 import ManageUser from "../pages/Dashboard/Admin/Admin/ManageUser/ManageUser";
 import ManageClass from "../pages/Dashboard/Admin/Admin/ManageClass/ManageClass";
 import FeedBack from "../pages/Dashboard/Admin/Admin/FeedBack/FeedBack";
+import AdminRoute from "./AdminRoute";
+import InstructorRoute from "./InstructorRoute";
 
 const router = createBrowserRouter([
     {
@@ -66,19 +68,19 @@ const router = createBrowserRouter([
         },
         {
           path: 'instructorClasses',
-          element: <InstrClasses></InstrClasses>
+          element: <InstructorRoute><InstrClasses></InstrClasses></InstructorRoute>
         },
         {
           path: 'addClass',
-          element: <AddClass></AddClass>
+          element: <InstructorRoute><AddClass></AddClass></InstructorRoute>
         },
         {
           path: 'manageUser',
-          element: <ManageUser></ManageUser>
+          element: <AdminRoute><ManageUser></ManageUser></AdminRoute>
         },
         {
           path: 'manageClass',
-          element: <ManageClass></ManageClass>
+          element: <AdminRoute><ManageClass></ManageClass></AdminRoute>
         },
         {
           path: 'feedback',

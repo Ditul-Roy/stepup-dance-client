@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import useSelects from '../../../../hook/useSelects';
 import { FaTrash, FaWallet } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import Payment from '../Payment/Payment';
+import { redirect } from 'react-router-dom';
 
 const MyClass = () => {
     const [selects, refetch] = useSelects();
@@ -13,11 +14,12 @@ const MyClass = () => {
         const payment = selects.find(s => s._id === id)
         setPay(payment);
         setHide(false);
+        console.log(payment);
+        redirect('/dashboard/payment')
 
     }
 
     const handleDelete = select => {
-        
 // TODO: delete button work is not finished
 
         Swal.fire({

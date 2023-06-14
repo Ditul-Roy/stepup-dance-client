@@ -1,19 +1,17 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-// import useAuth from '../hook/UseAuth';
-import useAdmin from '../hook/useAdmin';
+import useInstructor from '../hook/useInstructor';
 
-const AdminRoute = ({children}) => {
-    // const {user, loading} = useAuth();
+const InstructorRoute = ({children}) => {
     const location = useLocation();
-    const [isAdmin, adminLoading] = useAdmin();
-    if( adminLoading){
+    const [isInstructor, instructorLoading] = useInstructor();
+    if( instructorLoading){
         return <span className="loading loading-spinner loading-lg"></span>
     }
-    if( isAdmin){
+    if( isInstructor){
         return children;
     }
     return <Navigate to='/' state={{from: location}} replace></Navigate>
 };
 
-export default AdminRoute;
+export default InstructorRoute;

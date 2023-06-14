@@ -1,11 +1,15 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../../../hook/UseAuth';
+import useStudent from '../../../hook/useStudent';
+import useInstructor from '../../../hook/useInstructor';
+import useAdmin from '../../../hook/useAdmin';
 
 const Navbar = () => {
     const {user, signOutUser} = useAuth();
-    // const isInstructor = false;
-    const isAdmin = true;
+    const [isStudent] = useStudent();
+    const [isInstructor] = useInstructor();
+    const [isAdmin] = useAdmin();
     const handleLogOut = () => {
         signOutUser();
     }
@@ -15,7 +19,9 @@ const Navbar = () => {
         <li><NavLink to='/instructors'>instractors</NavLink></li>
         <li><NavLink to='/allClasses'>classes</NavLink></li>
         {user ? <>
-        {isAdmin ? <li><NavLink to='/dashboard/manageClass'>dashboard</NavLink></li> : <li><NavLink to='/dashboard/myClass'>dashboard</NavLink></li>}
+        {isStudent?.student === true && <li><NavLink to='/dashboard/myClass'>dashboard</NavLink></li>}
+        {isInstructor?.instructor === true && <li><NavLink to='/dashboard/instructorClasses'>dashboard</NavLink></li>}
+        {isAdmin?.admin === true && <li><NavLink to='/dashboard/manageClass'>dashboard</NavLink></li>}
         <li><NavLink to='/profile'>profile</NavLink></li>
         <li><button onClick={handleLogOut}>logOut</button></li>
         </> :  <li><NavLink to='/login'>log in</NavLink></li>} 

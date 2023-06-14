@@ -10,20 +10,6 @@ const PayChackOut = ({ price }) => {
     const elements = useElements();
     const {user} = useAuth();
     const [paymentErr, setPaymentErr] = useState('');
-    // const [clientSecret, setClientSecret] = useState("");
-
-    // useEffect(() => {
-    //     fetch("http://localhost:5000/create-payment-intent", {
-    //         method: "POST",
-    //         headers: { "Content-Type": "application/json" },
-    //         body: JSON.stringify(parseInt({ price }))
-    //     })
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             console.log(data);
-    //             setClientSecret(data.clientSecret)
-    //         });
-    // }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -48,25 +34,6 @@ const PayChackOut = ({ price }) => {
             setPaymentErr('');
             console.log('payment method', paymentMethod);
         }
-
-        // const {paymentIntent, error:confirmErr} = await stripe.confirmCardPayment(
-        //     clientSecret,
-        //     {
-        //         payment_method: {
-        //             card: card,
-        //             billing_details: {
-        //                 name: user?.displayName || 'anonymus',
-        //                 email: user?.email || 'unkown'
-        //             },
-        //         },
-        //     },
-        // );
-        // if(confirmErr){
-        //     // setPaymentErr(err)
-        //     console.log(confirmErr);
-        // }
-        // console.log(paymentIntent);
-
     }
 
     return (
